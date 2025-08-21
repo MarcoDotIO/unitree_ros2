@@ -30,7 +30,7 @@ enum TestMode {
   RISE_SIT,
   MOVE,
   STOP_MOVE,
-  
+  DANCE1,
 };
 
 class Go2SportClientNode : public rclcpp::Node {
@@ -93,6 +93,9 @@ class Go2SportClientNode : public rclcpp::Node {
       case STOP_MOVE:
         sport_client_.StopMove(req_);
         break;
+      case DANCE1:
+        sport_client_.Dance1(req_);
+        break;
       default:
         sport_client_.StopMove(req_);
     }
@@ -147,6 +150,7 @@ int main(int argc, char **argv) {
     std::cerr << "  8: RISE_SIT" << std::endl;
     std::cerr << "  9: MOVE" << std::endl;
     std::cerr << "  10: STOP_MOVE" << std::endl;
+    std::cerr << "  11: DANCE1" << std::endl;
     return 1;
   }
 

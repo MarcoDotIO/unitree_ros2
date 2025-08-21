@@ -1,0 +1,307 @@
+{
+  "moves": {
+    "damp": {
+      "api_id": 1001,
+      "timeout": 2.0,
+      "description": "Damping mode",
+      "parameters": {},
+      "safety_level": "safe"
+    },
+    "balance_stand": {
+      "api_id": 1002,
+      "timeout": 3.0,
+      "description": "Balance standing",
+      "parameters": {},
+      "safety_level": "safe"
+    },
+    "stop_move": {
+      "api_id": 1003,
+      "timeout": 1.0,
+      "description": "Stop movement",
+      "parameters": {},
+      "safety_level": "safe"
+    },
+    "stand_up": {
+      "api_id": 1004,
+      "timeout": 3.0,
+      "description": "Stand up",
+      "parameters": {},
+      "safety_level": "safe"
+    },
+    "stand_down": {
+      "api_id": 1005,
+      "timeout": 3.0,
+      "description": "Stand down",
+      "parameters": {},
+      "safety_level": "safe"
+    },
+    "recovery_stand": {
+      "api_id": 1006,
+      "timeout": 5.0,
+      "description": "Recovery stand",
+      "parameters": {},
+      "safety_level": "safe"
+    },
+    "euler": {
+      "api_id": 1007,
+      "timeout": 2.0,
+      "description": "Euler angle control",
+      "parameters": {
+        "roll": {"type": "float", "default": 0.0, "range": [-0.5, 0.5]},
+        "pitch": {"type": "float", "default": 0.0, "range": [-0.5, 0.5]},
+        "yaw": {"type": "float", "default": 0.0, "range": [-1.0, 1.0]}
+      },
+      "safety_level": "safe"
+    },
+    "move": {
+      "api_id": 1008,
+      "timeout": 2.0,
+      "description": "Move with velocity",
+      "parameters": {
+        "vx": {"type": "float", "default": 0.0, "range": [-1.0, 1.0]},
+        "vy": {"type": "float", "default": 0.0, "range": [-1.0, 1.0]},
+        "vyaw": {"type": "float", "default": 0.0, "range": [-2.0, 2.0]}
+      },
+      "safety_level": "safe"
+    },
+    "sit": {
+      "api_id": 1009,
+      "timeout": 3.0,
+      "description": "Sit down",
+      "parameters": {},
+      "safety_level": "safe"
+    },
+    "rise_sit": {
+      "api_id": 1010,
+      "timeout": 3.0,
+      "description": "Rise from sit",
+      "parameters": {},
+      "safety_level": "safe"
+    },
+    "speed_level": {
+      "api_id": 1015,
+      "timeout": 1.0,
+      "description": "Set speed level",
+      "parameters": {
+        "level": {"type": "int", "default": 1, "range": [0, 3]}
+      },
+      "safety_level": "safe"
+    },
+    "hello": {
+      "api_id": 1016,
+      "timeout": 5.0,
+      "description": "Greeting gesture",
+      "parameters": {},
+      "safety_level": "safe"
+    },
+    "stretch": {
+      "api_id": 1017,
+      "timeout": 8.0,
+      "description": "Stretching motion",
+      "parameters": {},
+      "safety_level": "safe"
+    },
+    "content": {
+      "api_id": 1020,
+      "timeout": 2.0,
+      "description": "Content mode",
+      "parameters": {},
+      "safety_level": "safe"
+    },
+    "dance1": {
+      "api_id": 1022,
+      "timeout": 15.0,
+      "description": "Built-in dance routine 1",
+      "parameters": {},
+      "safety_level": "safe"
+    },
+    "dance2": {
+      "api_id": 1023,
+      "timeout": 15.0,
+      "description": "Built-in dance routine 2",
+      "parameters": {},
+      "safety_level": "safe"
+    },
+    "switch_joystick": {
+      "api_id": 1027,
+      "timeout": 1.0,
+      "description": "Switch joystick control",
+      "parameters": {
+        "flag": {"type": "bool", "default": true}
+      },
+      "safety_level": "safe"
+    },
+    "pose": {
+      "api_id": 1028,
+      "timeout": 2.0,
+      "description": "Pose control",
+      "parameters": {
+        "flag": {"type": "bool", "default": true}
+      },
+      "safety_level": "safe"
+    },
+    "scrape": {
+      "api_id": 1029,
+      "timeout": 5.0,
+      "description": "Scraping motion",
+      "parameters": {},
+      "safety_level": "safe"
+    },
+    "front_flip": {
+      "api_id": 1030,
+      "timeout": 5.0,
+      "description": "Forward flip",
+      "parameters": {},
+      "safety_level": "advanced"
+    },
+    "front_jump": {
+      "api_id": 1031,
+      "timeout": 3.0,
+      "description": "Forward jump",
+      "parameters": {},
+      "safety_level": "intermediate"
+    },
+    "front_pounce": {
+      "api_id": 1032,
+      "timeout": 3.0,
+      "description": "Forward pounce",
+      "parameters": {},
+      "safety_level": "intermediate"
+    },
+    "heart": {
+      "api_id": 1036,
+      "timeout": 8.0,
+      "description": "Heart gesture",
+      "parameters": {},
+      "safety_level": "safe"
+    },
+    "static_walk": {
+      "api_id": 1061,
+      "timeout": 2.0,
+      "description": "Static walk mode",
+      "parameters": {},
+      "safety_level": "safe"
+    },
+    "trot_run": {
+      "api_id": 1062,
+      "timeout": 2.0,
+      "description": "Trot run mode",
+      "parameters": {},
+      "safety_level": "safe"
+    },
+    "economic_gait": {
+      "api_id": 1063,
+      "timeout": 2.0,
+      "description": "Economic gait mode",
+      "parameters": {},
+      "safety_level": "safe"
+    },
+    "left_flip": {
+      "api_id": 2041,
+      "timeout": 5.0,
+      "description": "Left flip",
+      "parameters": {},
+      "safety_level": "advanced"
+    },
+    "back_flip": {
+      "api_id": 2043,
+      "timeout": 5.0,
+      "description": "Backward flip",
+      "parameters": {},
+      "safety_level": "advanced"
+    },
+    "handstand": {
+      "api_id": 2044,
+      "timeout": 10.0,
+      "description": "Handstand",
+      "parameters": {
+        "flag": {"type": "bool", "default": true}
+      },
+      "safety_level": "advanced"
+    },
+    "free_walk": {
+      "api_id": 2045,
+      "timeout": 2.0,
+      "description": "Free walk mode",
+      "parameters": {},
+      "safety_level": "safe"
+    },
+    "free_bound": {
+      "api_id": 2046,
+      "timeout": 3.0,
+      "description": "Free bound mode",
+      "parameters": {
+        "flag": {"type": "bool", "default": true}
+      },
+      "safety_level": "intermediate"
+    },
+    "free_jump": {
+      "api_id": 2047,
+      "timeout": 3.0,
+      "description": "Free jump mode",
+      "parameters": {
+        "flag": {"type": "bool", "default": true}
+      },
+      "safety_level": "intermediate"
+    },
+    "free_avoid": {
+      "api_id": 2048,
+      "timeout": 2.0,
+      "description": "Free avoid mode",
+      "parameters": {
+        "flag": {"type": "bool", "default": true}
+      },
+      "safety_level": "safe"
+    },
+    "classic_walk": {
+      "api_id": 2049,
+      "timeout": 2.0,
+      "description": "Classic walk mode",
+      "parameters": {
+        "flag": {"type": "bool", "default": true}
+      },
+      "safety_level": "safe"
+    },
+    "walk_upright": {
+      "api_id": 2050,
+      "timeout": 3.0,
+      "description": "Walk upright mode",
+      "parameters": {
+        "flag": {"type": "bool", "default": true}
+      },
+      "safety_level": "intermediate"
+    },
+    "cross_step": {
+      "api_id": 2051,
+      "timeout": 3.0,
+      "description": "Cross step mode",
+      "parameters": {
+        "flag": {"type": "bool", "default": true}
+      },
+      "safety_level": "safe"
+    },
+    "auto_recovery_set": {
+      "api_id": 2054,
+      "timeout": 1.0,
+      "description": "Set auto recovery mode",
+      "parameters": {
+        "flag": {"type": "bool", "default": true}
+      },
+      "safety_level": "safe"
+    },
+    "auto_recovery_get": {
+      "api_id": 2055,
+      "timeout": 1.0,
+      "description": "Get auto recovery status",
+      "parameters": {},
+      "safety_level": "safe"
+    },
+    "switch_avoid_mode": {
+      "api_id": 2058,
+      "timeout": 1.0,
+      "description": "Switch avoid mode",
+      "parameters": {},
+      "safety_level": "safe"
+    }
+  }
+}
