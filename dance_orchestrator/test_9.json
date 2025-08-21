@@ -1,0 +1,24 @@
+{
+  "created": "2025-08-21T05:19:44Z",
+  "inter_move_delay": 1.0,
+  "moves": [
+    {
+      "api_id": 1022,
+      "delay_after": 5.0,
+      "description": "Built-in dance routine 1",
+      "name": "dance1",
+      "parameters": {},
+      "timeout": 15.0
+    },
+    {
+      "api_id": 1023,
+      "delay_after": 1.031508123361391e-08,
+      "description": "Built-in dance routine 2",
+      "name": "dance2",
+      "parameters": {},
+      "timeout": 15.0
+    }
+  ],
+  "name": "test_9",
+  "version": "1.0"
+}

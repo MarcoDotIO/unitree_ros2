@@ -32,7 +32,18 @@ void DanceOrchestrator::handleSportResponse(const unitree_api::msg::Response::Sh
     if (msg->header.identity.api_id == current_api_id_.load()) {
         if (msg->header.status.code == 0) {
             logInfo("Received successful response for API ID: " + std::to_string(msg->header.identity.api_id));
-            // Move completed successfully, execute next move
+            
+            // Check if we need to apply delay before next move
+            if (current_sequence_ && current_move_index_ > 0) {
+                const auto& completed_move = current_sequence_->getMoves()[current_move_index_ - 1];
+                if (completed_move.delay_after > 0.0f) {
+                    logInfo("Applying delay of " + std::to_string(completed_move.delay_after) + " seconds");
+                    scheduleDelayedExecution(completed_move.delay_after);
+                    return;
+                }
+            }
+            
+            // No delay needed, execute next move immediately
             executeNextMove();
         } else {
             logError("Received error response for API ID: " + std::to_string(msg->header.identity.api_id) + 
@@ -192,6 +203,12 @@ void DanceOrchestrator::emergencyStop() {
     emergency_stop_requested_.store(true);
     execution_active_.store(false);
     
+    // Cancel any pending delay timers
+    if (delay_timer_) {
+        delay_timer_->cancel();
+        delay_timer_.reset();
+    }
+    
     // Send emergency stop command to robot
     try {
         unitree_api::msg::Request req;
@@ -207,10 +224,34 @@ void DanceOrchestrator::emergencyStop() {
     }
 }
 
+void DanceOrchestrator::scheduleDelayedExecution(float delay_seconds) {
+    // Cancel any existing delay timer
+    if (delay_timer_) {
+        delay_timer_->cancel();
+    }
+    
+    // Create a one-shot timer for the delay
+    delay_timer_ = create_wall_timer(
+        std::chrono::milliseconds(static_cast<int>(delay_seconds * 1000)),
+        [this]() {
+            if (execution_active_.load() && !emergency_stop_requested_.load()) {
+                executeNextMove();
+            }
+            delay_timer_.reset(); // Clean up the timer
+        }
+    );
+}
+
 void DanceOrchestrator::resetExecutionState() {
     execution_active_.store(false);
     current_api_id_.store(0);
     emergency_stop_requested_.store(false);
+    
+    // Cancel any pending delay timers
+    if (delay_timer_) {
+        delay_timer_->cancel();
+        delay_timer_.reset();
+    }
 }
 
 void DanceOrchestrator::logInfo(const std::string& message) {

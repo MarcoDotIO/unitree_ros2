@@ -35,6 +35,7 @@ private:
     
     // Timing and control
     rclcpp::TimerBase::SharedPtr execution_timer_;
+    rclcpp::TimerBase::SharedPtr delay_timer_;
     std::atomic<bool> emergency_stop_requested_{false};
 
 public:
@@ -65,6 +66,7 @@ private:
     void resetExecutionState();
     bool sendMoveRequest(const DanceMove& move);
     void executeNextMove();
+    void scheduleDelayedExecution(float delay_seconds);
     
     // Utility methods
     void logInfo(const std::string& message);

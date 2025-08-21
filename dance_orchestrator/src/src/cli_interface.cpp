@@ -179,14 +179,55 @@ bool CLIInterface::handleAdd(const std::vector<std::string>& args) {
     }
     
     if (args.size() < 2) {
-        printError("Usage: add <move> [param=value ...]");
+        printError("Usage: add <move> [param=value ...] OR add delay(<seconds>)");
         return false;
     }
     
-    std::string move_name = args[1];
+    std::string item_name = args[1];
     
-    if (!move_registry_->hasMove(move_name)) {
-        printError("Unknown move: " + move_name + ". Use 'list-moves' to see available moves.");
+    // Check if this is a delay command
+    if (item_name.substr(0, 5) == "delay" && item_name.find('(') != std::string::npos) {
+        // Parse delay(X.X) format
+        size_t start = item_name.find('(');
+        size_t end = item_name.find(')', start);
+        
+        if (start == std::string::npos || end == std::string::npos) {
+            printError("Invalid delay format. Use: add delay(1.0)");
+            return false;
+        }
+        
+        std::string delay_str = item_name.substr(start + 1, end - start - 1);
+        float delay_seconds;
+        
+        try {
+            delay_seconds = std::stof(delay_str);
+        } catch (const std::exception& e) {
+            printError("Invalid delay value: " + delay_str);
+            return false;
+        }
+        
+        // Add delay to the last move in sequence
+        if (current_sequence_->empty()) {
+            printError("Cannot add delay to empty sequence. Add a move first.");
+            return false;
+        }
+        
+        // Get the last move and modify its delay
+        auto moves = current_sequence_->getMoves();
+        auto& last_move = const_cast<DanceMove&>(moves.back());
+        last_move.delay_after = delay_seconds;
+        
+        // Remove and re-add the move to update the sequence
+        current_sequence_->removeMove(current_sequence_->size() - 1);
+        current_sequence_->addMove(last_move);
+        
+        printSuccess("Added " + std::to_string(delay_seconds) + " second delay after last move");
+        return true;
+    }
+    
+    // Handle regular move addition
+    if (!move_registry_->hasMove(item_name)) {
+        printError("Unknown move: " + item_name + ". Use 'list-moves' to see available moves.");
         return false;
     }
     
@@ -196,10 +237,10 @@ bool CLIInterface::handleAdd(const std::vector<std::string>& args) {
     
     // Create and validate move
     try {
-        DanceMove move = move_registry_->createMove(move_name, json_params);
+        DanceMove move = move_registry_->createMove(item_name, json_params);
         current_sequence_->addMove(move);
         
-        printSuccess("Added move: " + move_name + " to sequence");
+        printSuccess("Added move: " + item_name + " to sequence");
         if (!params.empty()) {
             printInfo("Parameters: " + json_params.dump());
         }

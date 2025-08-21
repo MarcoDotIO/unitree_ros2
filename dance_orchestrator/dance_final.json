@@ -1,0 +1,47 @@
+{
+  "created": "2025-08-21T05:02:58Z",
+  "moves": [
+    {
+      "api_id": 1004,
+      "description": "Stand up",
+      "name": "stand_up",
+      "parameters": {},
+      "timeout": 3.0,
+      "delay_after": 1.0
+    },
+    {
+      "api_id": 1036,
+      "description": "Heart gesture",
+      "name": "heart",
+      "parameters": {},
+      "timeout": 8.0,
+      "delay_after": 2.0
+    },
+    {
+      "api_id": 1022,
+      "description": "Built-in dance routine 1",
+      "name": "dance1",
+      "parameters": {},
+      "timeout": 15.0,
+      "delay_after": 1.5
+    },
+    {
+      "api_id": 1016,
+      "description": "Greeting gesture",
+      "name": "hello",
+      "parameters": {},
+      "timeout": 5.0,
+      "delay_after": 0.5
+    },
+    {
+      "api_id": 1009,
+      "description": "Sit down",
+      "name": "sit",
+      "parameters": {},
+      "timeout": 3.0,
+      "delay_after": 0.0
+    }
+  ],
+  "name": "dance_final",
+  "version": "1.0"
+}
